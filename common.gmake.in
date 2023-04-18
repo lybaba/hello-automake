@@ -1,0 +1,34 @@
+#
+#	Makefile
+#
+
+# To run profiler add:
+
+PROFILE         = # -fprofile-arcs -ftest-coverage
+PROFILELIB      = # -lgcov
+
+# General flags
+
+LDCONFIG	= @LDCONFIG@
+RANLIB		= @RANLIB@
+SOEXT		= @SOEXT@
+AEXT		= @AEXT@
+EXE		= @EXEEXT@
+ARCH		= @ARCH@
+CC		= @CXX@ $(ARCH)
+O     = @OBJEXT@
+ARFLAGS		= @AROPTS@
+PIC		= @PIC@
+LIBS    = @LIBS@ $(PROFILELIB)
+MODEL		= @MODEL@
+SYSTEM		= @MACHINE_TYPE@-@SYSTEM_TYPE@
+AM_CPPFLAGS	= $(PROFILE) @THREADS@ @OPTIMS@ @WARNINGS@ -D_REENTRANT -DNSWF_TIMESTAMP=NSWF_MIXED_TIMESTAMP
+
+DESTDIR         ?= /collabwork/nscmp/@VERSION@
+INSTALLDIR      = $(DESTDIR)/bin
+
+LOCALLIBDIR     = @abs_top_builddir@/lib
+LOCALLIBSODIR   = @abs_top_builddir@/shared-lib
+AM_CPPFLAGS  += -I @abs_top_builddir@/include -I @abs_top_srcdir@/include
+
+HAVE_DYNAMIC     = @HAVE_DYNAMIC@
